@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.EmploymentManagementSystem.Model.PaySlip;
-import com.example.EmploymentManagementSystem.Model.Salary;
 import com.example.EmploymentManagementSystem.Repository.SalaryRepository;
+import com.example.EmploymentManagementSystem.model.PaySlip;
+import com.example.EmploymentManagementSystem.model.Salary;
 
 @Service
 public class SalaryService {
