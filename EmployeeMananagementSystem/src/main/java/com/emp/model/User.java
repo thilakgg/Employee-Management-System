@@ -29,9 +29,16 @@ public class User {
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@Column(name = "designation")
+	private String designation;
+	
+	@Column(name = "department")
+	private String department;
+	
 	private String email;
 	
 	private String password;
+	 
 	
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
@@ -47,12 +54,14 @@ public class User {
 		
 	}
 	
-	public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
+	public User(String firstName, String lastName,String designation,String department, String email, String password, Collection<Role> roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.designation=designation;
+		this.department=department;
 		this.email = email;
-		this.password = password;
+	    this.password = password;
 		this.roles = roles;
 	}
 	public Long getId() {
@@ -73,6 +82,22 @@ public class User {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public String getEmail() {
 		return email;
 	}
@@ -85,6 +110,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public Collection<Role> getRoles() {
 		return roles;
 	}

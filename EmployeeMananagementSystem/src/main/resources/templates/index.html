@@ -61,6 +61,16 @@
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
 							Employee Email</a>
 					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+							Employee Designation</a>
+					</th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=email&sortDir=' + ${reverseSortDir}}">
+							Employee Department</a>
+					</th>
+					
+					
 					<th> Actions </th>
 				</tr>
 			</thead>
@@ -69,8 +79,12 @@
 					<td th:text="${employee.firstName}"></td>
 					<td th:text="${employee.lastName}"></td>
 					<td th:text="${employee.email}"></td>
+					<td th:text="${employee.designation}"></td>
+					<td th:text="${employee.department}"></td>
 					<td> <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Update</a>
 					    <a th:href="@{/deleteEmployee/{id}(id=${employee.id})}" class="btn btn-danger">Delete</a>
+					     <a th:href="@{/showFormForUpdate/{id}(id=${employee.id})}" class="btn btn-primary">Add Address</a>
+				
 					</td>
 				</tr>
 			</tbody>

@@ -20,8 +20,16 @@ public class Employee {
 	@Column(name = "last_name")
 	private String lastName;
 	
+	@Column(name = "designation")
+	private String designation;
+	
+	@Column(name = "department")
+	private String department;
+	
 	@Column(name = "email")
 	private String email;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -40,11 +48,27 @@ public class Employee {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+	public String getDesignation() {
+		return designation;
+	}
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
+	
 }
 
