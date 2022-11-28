@@ -2,12 +2,16 @@ package com.example.EmploymentManagementSystem.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
+import java.util.Optional;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -25,9 +29,13 @@ public class Attendance {
 	private LocalDate date;
 	private LocalDateTime startTime;
 	private LocalDateTime endTime;
-	private boolean present ;
+
 	private Long overTime ;
 	
+	@ManyToOne
+	@JoinColumn(name= "employee_id", foreignKey = @ForeignKey(name = "EMPLOYEE_ID_FK")
+	)
+	private Employee employee;
 	
 	public Attendance(Long id, LocalDate date, LocalDateTime startTime, LocalDateTime endTime, boolean present,
 			Long overTime) {
@@ -36,7 +44,7 @@ public class Attendance {
 		this.date = date;
 		this.startTime = startTime;
 		this.endTime = endTime;
-		this.present = present;
+		
 		this.overTime = overTime;
 	}
 
@@ -76,13 +84,19 @@ public class Attendance {
 	public void setEndTime(LocalDateTime endTime) {
 		this.endTime = endTime;
 	}
-	public boolean isPresent() {
-		return present;
-	}
-	public void setPresent(boolean present) {
-		this.present = present;
+
+	public Employee getEmployee() {
+		return employee;
 	}
 
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	
+
+
+	
 //	
 //	
 	

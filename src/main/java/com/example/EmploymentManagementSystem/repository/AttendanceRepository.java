@@ -1,4 +1,4 @@
-package com.example.EmploymentManagementSystem.Repository;
+package com.example.EmploymentManagementSystem.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

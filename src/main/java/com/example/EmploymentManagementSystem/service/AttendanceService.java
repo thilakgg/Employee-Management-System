@@ -1,4 +1,4 @@
-package com.example.EmploymentManagementSystem.Service;
+package com.example.EmploymentManagementSystem.service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -7,14 +7,17 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.example.EmploymentManagementSystem.Repository.AttendanceRepository;
 import com.example.EmploymentManagementSystem.model.Attendance;
+import com.example.EmploymentManagementSystem.model.Employee;
+import com.example.EmploymentManagementSystem.model.Employee;
+import com.example.EmploymentManagementSystem.repository.AttendanceRepository;
 
 @Service
 public class AttendanceService {
@@ -38,10 +41,8 @@ public class AttendanceService {
 		Long ot = caculateOT(attendance.getStartTime(), attendance.getEndTime());
 		attendance.setOverTime(ot);   //setOverTimeField
 		
+	
 		
-		
-		boolean p = ispresent(attendance.getStartTime(), attendance.getEndTime());
-		attendance.setPresent(p);
 		
 		return repository.save(attendance);
 		}
