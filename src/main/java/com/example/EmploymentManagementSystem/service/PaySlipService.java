@@ -35,20 +35,19 @@ public class PaySlipService {
 
 	@Autowired
 	EmployeeService employeeService;
-	@Autowired
-	PaySlip paySlip;
+//	@Autowired
+//	PaySlip paySlip;
 	@Autowired
 	EmployeeService empService;
 	@Autowired
 	PaySlipRepository paySlipRepository;
 
-	public void ProcessPayment() {
+	public void processPayment() {
 		List<Employee> empList = employeeService.getEmployees();
-		Iterator<Employee> it = empList.iterator();
-		List<PaySlip> p = new ArrayList<PaySlip>();
-		while (it.hasNext()) {
-			Employee e = it.next();
+		List<PaySlip> p = new ArrayList<>();
+		for(Employee e: empList) {
 			if (e.isActive()) {
+				PaySlip paySlip = new PaySlip();
 				int basicSalary = e.getSalary().getBasicSalary();
 				paySlip.setBasicSalary(basicSalary);
 				int hra = basicSalary * 50 / 100;
@@ -60,15 +59,16 @@ public class PaySlipService {
 
 				int proTax = calProTax(basicSalary);
 				paySlip.setProfessionalTax(proTax);
-				Integer grossSalary = basicSalary + hra + da - pf + proTax;
+				Integer netSalary = basicSalary + hra + da - pf + proTax;
 
-				paySlip.setGrossSalary(grossSalary);
+				paySlip.setNetSalary(netSalary);
 				paySlip.setEmployeeId(e.getId());
 				p.add(paySlip);
-				paySlipRepository.saveAll(p);
+				
 
 			}
 		}
+		paySlipRepository.saveAll(p);
 
 	}
 
@@ -199,20 +199,24 @@ public class PaySlipService {
         table1.addCell("  ");
         
         table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-        table1.addCell(new Phrase("Total Earnings  ", FontFactory.getFont(FontFactory.COURIER,10)));
+        table1.addCell(new Phrase("Total 	Earnings  ", FontFactory.getFont(FontFactory.COURIER,10)));
         table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
         table1.addCell(new Phrase(String.valueOf((paySlip.getBasicSalary() +paySlip.getDearnessAllowance()+
         		paySlip.getHouseRentallowance()))));
     	table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
     	table1.addCell(new Phrase("Total Deductions ", FontFactory.getFont(FontFactory.COURIER,10)));
     	table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-    	table1.addCell(new Phrase(String.valueOf((paySlip.getProfessionalTax() + paySlip.getProfessionalTax()))));
+    	table1.addCell(new Phrase(String.valueOf((paySlip.getProfessionalTax() + paySlip.getProvidentFund()))));
     	
-    	table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-    	table1.addCell(new Phrase("Net Salary  ", FontFactory.getFont(FontFactory.COURIER,10)));
- 		table1.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-    	table1.addCell(new Phrase(String.valueOf(paySlip.getGrossSalary())));
     	document.add(table1);
+    	
+    	PdfPTable table3 = new PdfPTable(1);
+    	
+    	table3.addCell(new Phrase("Net Salary ", FontFactory.getFont(FontFactory.COURIER, 10)));
+		table3.addCell(new Phrase(":", FontFactory.getFont(FontFactory.COURIER, 10)));
+		table3.addCell(new Phrase(String.valueOf(paySlip.getNetSalary()), FontFactory.getFont(FontFactory.COURIER, 10)));
+    	
+    	document.add(table3);
     	document.close();
     	}
 	

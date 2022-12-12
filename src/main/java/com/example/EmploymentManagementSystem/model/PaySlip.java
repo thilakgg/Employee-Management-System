@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 @Entity(name = "payslip")
-@Component
+
 public class PaySlip {
 	
 	@Id
@@ -22,19 +22,15 @@ public class PaySlip {
 	private int houseRentallowance;
 	@Column(name ="dearness_allowance")
 	private int dearnessAllowance;
-	@Override
-	public String toString() {
-		return "PaySlip [id=" + id + ", basicSalary=" + basicSalary + ", houseRentallowance=" + houseRentallowance
-				+ ", dearnessAllowance=" + dearnessAllowance + ", providentFund=" + providentFund + ", professionalTax="
-				+ professionalTax + ", grossSalary=" + grossSalary + ", employeeId=" + employeeId + "]";
-	}
+	
+	
 
 	@Column(name ="provident_fund")
 	private int providentFund;
 	@Column(name ="professional_tax")
 	private int professionalTax ;
-	@Column(name ="gross_salary")
-	private int grossSalary;
+	@Column(name ="net_salary")
+	private int netSalary;
 	@Column(name = "employee_id")
 	private Long employeeId;
 	
@@ -90,12 +86,14 @@ public class PaySlip {
 		this.professionalTax = professionalTax;
 	}
 
-	public int getGrossSalary() {
-		return grossSalary;
+	
+
+	public int getNetSalary() {
+		return netSalary;
 	}
 
-	public void setGrossSalary(int grossSalary) {
-		this.grossSalary = grossSalary;
+	public void setNetSalary(int netSalary) {
+		this.netSalary = netSalary;
 	}
 
 	public Long getEmployeeId() {

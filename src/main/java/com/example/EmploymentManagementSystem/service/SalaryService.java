@@ -16,40 +16,26 @@ import com.example.EmploymentManagementSystem.repository.SalaryRepository;
 
 @Service
 public class SalaryService {
-	
+
 	@Autowired
 	SalaryRepository repository;
-	EmployeeService employeeService;
-	EmployeeRepository employeeRepository;
-	PaySlip paySlip;
-	
+	@Autowired
+	AttendanceService attservice;
+//	EmployeeService employeeService;
+//	EmployeeRepository employeeRepository;
+//	PaySlip paySlip;
+
 	public Salary addSalary(Salary salary) {
-		Month month = LocalDate.now().getMonth();
-		salary.setMonth(month);
+		salary.getMonth();
 		return repository.save(salary);
-				
+
 	}
-	
-	//get salary by employee id
-	public void getSalary(@PathVariable int empID) {}
-	
-	//method process payment depending on the Status of the employee in company
-	
-	
-	
-	//method to calculate deductions
-	public void calculateDecuctions() {}
-	
-	public void calculateAllowance() {
+
+	public List<Salary> getBasicSalaryGreaterThan(int amt)  {
 		
+		return repository.findByBasicSalaryGreaterThan(amt);
 	}
 	
-	//create pdf of payslip
-	
-	public void createPaySlip(PaySlip payslip) {
-		
-	}
-	
-	
+
 
 }

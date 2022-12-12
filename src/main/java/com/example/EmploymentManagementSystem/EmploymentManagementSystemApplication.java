@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.example.EmploymentManagementSystem.config.EmsConfig;
 import com.example.EmploymentManagementSystem.model.PaySlip;
 
-@SpringBootApplication(scanBasePackages = "com.example.EmploymentManagementSystem")
+@SpringBootApplication(scanBasePackages = "com.example.employmentManagementSystem")
 public class EmploymentManagementSystemApplication {
 
 	public static void main(String[] args) {

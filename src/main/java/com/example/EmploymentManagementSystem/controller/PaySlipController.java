@@ -18,9 +18,9 @@ public class PaySlipController {
 	@Autowired
 	PaySlipService service;
 	
-	@GetMapping("/processPayment")
+	@GetMapping("/processPayment") 
 	public void processPayment() {
-		service.ProcessPayment();
+		service.processPayment();
 	}
 	
 	@GetMapping("/getPaySlip")

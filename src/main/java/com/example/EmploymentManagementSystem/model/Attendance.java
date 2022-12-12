@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +22,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "attendance")
-@Component
+
 public class Attendance {
 	
 	@Id

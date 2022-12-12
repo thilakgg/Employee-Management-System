@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name = "employee")
-@Component
+
 public class Employee {
 	
 	@Id
